@@ -1,0 +1,1977 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>comparIT – Fast Grocery Price Comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --bg: #f5f6f9;
+  --card: #ffffff;
+  --card-subtle: #f8f9fa;
+  --text: #1a1e29;
+  --text-muted: #727a8e;
+  --line: #eaedf2;
+  --line-strong: #d8dde6;
+  --zepto-purple: #3b0062;
+  --zepto-purple-light: #520586;
+  --zepto-pink: #ff3269;
+  --zepto-pink-hover: #e81b53;
+  --zepto-pink-soft: rgba(255, 50, 105, 0.08);
+  --green: #0c831f;
+  --green-soft: rgba(12, 131, 31, 0.1);
+  --shadow-sm: 0 2px 8px rgba(20, 24, 36, 0.04);
+  --shadow: 0 4px 16px rgba(20, 24, 36, 0.07);
+  --shadow-lg: 0 12px 32px rgba(20, 24, 36, 0.12);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+}
+
+[data-theme="dark"] {
+  --bg: #0c0f17;
+  --card: #151a24;
+  --card-subtle: #1c2230;
+  --text: #f0f3fa;
+  --text-muted: #8c97ad;
+  --line: #242c3d;
+  --line-strong: #333d52;
+  --zepto-purple: #7028b0;
+  --zepto-purple-light: #8938d4;
+  --zepto-pink: #ff3e73;
+  --zepto-pink-hover: #ff5483;
+  --zepto-pink-soft: rgba(255, 62, 115, 0.14);
+  --green: #19a531;
+  --green-soft: rgba(25, 165, 49, 0.16);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 14px 36px rgba(0, 0, 0, 0.6);
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.25s, color 0.25s;
+}
+
+button { font-family: inherit; color: inherit; cursor: pointer; border: 0; background: transparent; }
+input { font-family: inherit; }
+
+/* ==================== HEADER (Zepto Style) ==================== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  transition: background 0.25s, border-color 0.25s;
+}
+
+.top-bar {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Brand Logo */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+}
+.brand-logo {
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  font-size: 26px;
+  letter-spacing: -0.6px;
+  color: var(--zepto-purple);
+  line-height: 1;
+}
+.brand-logo .dot {
+  color: var(--zepto-pink);
+}
+.brand-logo .suffix {
+  color: var(--zepto-pink);
+  font-size: 26px;
+  font-weight: 800;
+  margin-left: 1px;
+}
+
+/* Delivery indicator */
+.delivery-meta {
+  display: flex;
+  flex-direction: column;
+  padding-left: 12px;
+  border-left: 1px solid var(--line);
+  min-width: 145px;
+}
+.delivery-tag {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--text);
+}
+.delivery-tag .bolt {
+  color: #f59e0b;
+  font-size: 15px;
+}
+.delivery-location {
+  font-size: 12px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 1px;
+  cursor: pointer;
+}
+.delivery-location:hover {
+  color: var(--zepto-pink);
+}
+
+/* Search Box */
+.search-wrapper {
+  position: relative;
+  flex: 1;
+  max-width: 600px;
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  background: var(--card-subtle);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 0 14px;
+  height: 46px;
+  transition: all 0.2s ease;
+}
+.search-box:focus-within {
+  background: var(--card);
+  border-color: var(--zepto-pink);
+  box-shadow: 0 0 0 3px var(--zepto-pink-soft);
+}
+.search-icon {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+.search-box input {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 14.5px;
+  font-weight: 500;
+  height: 100%;
+}
+.search-box input::placeholder {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+.search-box kbd {
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  padding: 2px 7px;
+  color: var(--text-muted);
+  background: var(--card);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+.btn-clear {
+  border: 0;
+  background: transparent;
+  font-size: 14px;
+  color: var(--text-muted);
+  display: none;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.btn-clear:hover {
+  color: var(--text);
+  background: var(--line);
+}
+
+/* Autocomplete Suggestions */
+.suggestions-popup {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 8px);
+  background: var(--card);
+  color: var(--text);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  display: none;
+  z-index: 100;
+}
+.suggestions-popup div {
+  padding: 11px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.15s;
+}
+.suggestions-popup div.on,
+.suggestions-popup div:hover {
+  background: var(--zepto-pink-soft);
+  color: var(--zepto-pink);
+}
+mark {
+  background: none;
+  color: var(--zepto-pink);
+  font-weight: 700;
+}
+
+/* Header Right Buttons */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn-nav {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text);
+  border: 1px solid var(--line);
+  background: var(--card);
+  transition: all 0.2s;
+  position: relative;
+}
+.btn-nav:hover {
+  border-color: var(--line-strong);
+  background: var(--card-subtle);
+  transform: translateY(-1px);
+}
+.btn-cart {
+  background: var(--zepto-pink);
+  color: #ffffff;
+  border: 1px solid var(--zepto-pink);
+  padding: 8px 18px;
+  font-weight: 700;
+}
+.btn-cart:hover {
+  background: var(--zepto-pink-hover);
+  border-color: var(--zepto-pink-hover);
+  color: #ffffff;
+}
+.cart-badge {
+  background: #ffffff;
+  color: var(--zepto-pink);
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  padding: 1px 7px;
+  font-weight: 800;
+  margin-left: 2px;
+}
+.btn-theme {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  font-size: 16px;
+}
+.db-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--green-soft);
+  color: var(--green);
+  border: 1px solid rgba(12, 131, 31, 0.25);
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 5px 11px;
+  border-radius: var(--radius-full);
+  user-select: none;
+}
+.db-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 6px rgba(12, 131, 31, 0.6);
+  animation: pulseDot 2s infinite;
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.85); }
+}
+
+/* ==================== SUB-NAV / CATEGORY STRIP ==================== */
+.subnav-container {
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+  transition: background 0.25s, border-color 0.25s;
+}
+.subnav {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  gap: 6px;
+  padding: 4px 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.subnav::-webkit-scrollbar { display: none; }
+.subnav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+  border-radius: var(--radius-sm);
+  transition: all 0.15s;
+  position: relative;
+  cursor: pointer;
+}
+.subnav-item:hover {
+  color: var(--text);
+  background: var(--card-subtle);
+}
+.subnav-item.on {
+  color: var(--zepto-pink);
+  font-weight: 700;
+}
+.subnav-item.on::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 10px;
+  right: 10px;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: var(--zepto-pink);
+}
+
+/* ==================== MAIN CONTENT ==================== */
+main {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+}
+
+/* Zepto Hero Notice */
+.hero-banner {
+  background: linear-gradient(90deg, rgba(59, 0, 98, 0.06), rgba(255, 50, 105, 0.08));
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+[data-theme="dark"] .hero-banner {
+  background: linear-gradient(90deg, rgba(112, 40, 176, 0.16), rgba(255, 62, 115, 0.16));
+}
+.hero-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--zepto-pink);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.hero-text b {
+  font-size: 14.5px;
+  color: var(--text);
+  display: block;
+}
+.hero-text span {
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+.hero-stats {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--green);
+  background: var(--green-soft);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+/* Section Header */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--text);
+  margin: 0;
+}
+.section-link {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--zepto-pink);
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.section-link:hover {
+  text-decoration: underline;
+}
+
+/* ==================== SHOP BY CATEGORY (Iconic Zepto Grid) ==================== */
+.category-section {
+  margin-bottom: 32px;
+}
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 14px;
+}
+@media (min-width: 768px) {
+  .category-grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+.cat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px 8px 12px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+.cat-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow);
+}
+.cat-card.active {
+  border-color: var(--zepto-pink);
+  background: var(--zepto-pink-soft);
+}
+.cat-img-box {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-md);
+  background: var(--card-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.cat-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s;
+}
+.cat-card:hover .cat-img-box img {
+  transform: scale(1.08);
+}
+.cat-name {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text);
+  max-width: 90px;
+}
+
+/* ==================== CONTROLS & FILTER BAR ==================== */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.platform-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.filter-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-right: 4px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  transition: all 0.15s;
+}
+.chip:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-1px);
+}
+.chip.on {
+  background: var(--card);
+  border-color: var(--zepto-purple);
+  box-shadow: 0 0 0 1px var(--zepto-purple);
+}
+.chip.off {
+  opacity: 0.45;
+  text-decoration: line-through;
+  background: var(--card-subtle);
+}
+.pdot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.right-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.select-wrapper select {
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text);
+  border-radius: var(--radius-md);
+  padding: 7px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.select-wrapper select:focus {
+  border-color: var(--zepto-pink);
+}
+.btn-fav-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: all 0.15s;
+}
+.btn-fav-filter.on {
+  border-color: #ef4444;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.meta-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+/* ==================== PRODUCT CARDS GRID (Zepto Layout) ==================== */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+}
+@media (min-width: 1100px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.pcard {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  animation: cardFade 0.35s ease both;
+}
+.pcard:hover {
+  transform: translateY(-3px);
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow);
+}
+@keyframes cardFade {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Image Container */
+.pcard-image-wrap {
+  position: relative;
+  width: 100%;
+  height: 170px;
+  background: var(--card-subtle);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.pcard-image-wrap img {
+  max-width: 82%;
+  max-height: 82%;
+  object-fit: contain;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.05));
+}
+.pcard:hover .pcard-image-wrap img {
+  transform: scale(1.06);
+}
+
+/* Tags on Image */
+.badge-save {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: var(--green);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.2px;
+}
+.badge-cheapest {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: var(--zepto-purple);
+  color: #ffffff;
+  font-size: 10.5px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+.btn-heart {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  color: #9ca3af;
+  transition: transform 0.15s, color 0.15s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+[data-theme="dark"] .btn-heart {
+  background: rgba(21, 26, 36, 0.88);
+}
+.btn-heart:hover {
+  transform: scale(1.15);
+}
+.btn-heart.on {
+  color: #ef4444;
+}
+
+/* ICONIC ZEPTO ADD BUTTON (Right on the bottom of image wrap or above card details) */
+.btn-add-zepto {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: #ffffff;
+  border: 1.5px solid var(--zepto-pink);
+  color: var(--zepto-pink);
+  font-size: 12.5px;
+  font-weight: 800;
+  padding: 5px 16px;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.15s ease;
+  z-index: 2;
+}
+[data-theme="dark"] .btn-add-zepto {
+  background: #1c2230;
+}
+.btn-add-zepto:hover {
+  background: var(--zepto-pink);
+  color: #ffffff;
+}
+
+/* Stepper Quantity (When Item added) */
+.stepper-zepto {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  background: var(--zepto-pink);
+  color: #ffffff;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(255, 50, 105, 0.3);
+  z-index: 2;
+}
+.stepper-zepto button {
+  background: transparent;
+  color: #ffffff;
+  width: 28px;
+  height: 28px;
+  font-size: 15px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+.stepper-zepto button:hover {
+  background: rgba(0, 0, 0, 0.15);
+}
+.stepper-zepto span {
+  min-width: 24px;
+  text-align: center;
+  font-size: 12.5px;
+  font-weight: 800;
+}
+
+/* Product Info */
+.pcard-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Price Row (Zepto style) */
+.pcard-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.price-badge-green {
+  background: var(--green);
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 6px;
+  line-height: 1.2;
+}
+.price-strike {
+  color: var(--text-muted);
+  font-size: 12.5px;
+  text-decoration: line-through;
+}
+.best-plat-pill {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--zepto-purple);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+/* Title and Unit */
+.pcard-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text);
+  margin: 0 0 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 36px;
+}
+.pcard-unit {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+/* Comparison Bar / Platform Rows */
+.compare-box {
+  background: var(--card-subtle);
+  border-radius: var(--radius-md);
+  padding: 8px;
+  margin-top: auto;
+}
+.compare-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.prow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.prow:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.prow.sel {
+  background: var(--card);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  outline: 1.5px solid var(--zepto-pink);
+}
+.prow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.prow-name {
+  width: 74px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+}
+.prow-bar {
+  flex: 1;
+  height: 5px;
+  background: var(--line);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.prow-bar i {
+  display: block;
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.3s;
+}
+.prow-price {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.btn-more-toggle {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--zepto-pink);
+  padding: 5px 0 2px;
+  cursor: pointer;
+}
+.btn-more-toggle:hover {
+  text-decoration: underline;
+}
+
+/* Card Action Button */
+.btn-open-store {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 8px;
+  padding: 7px 10px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.btn-open-store:hover {
+  border-color: var(--zepto-pink);
+  color: var(--zepto-pink);
+  background: var(--zepto-pink-soft);
+}
+
+/* Empty State & Skeletons */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+}
+.empty-state-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+.empty-state h3 {
+  font-size: 18px;
+  color: var(--text);
+  margin: 0 0 6px;
+}
+.skeleton-card {
+  height: 380px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(90deg, var(--card) 25%, var(--line) 50%, var(--card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+}
+@keyframes shimmer {
+  to { background-position: -200% 0; }
+}
+
+/* Recent Search Chips */
+.recent-searches {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+/* ==================== SHOPPING CART DRAWER (Zepto Style) ==================== */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 100;
+}
+.drawer-backdrop.on {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(440px, 100%);
+  background: var(--card);
+  z-index: 101;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 35px rgba(0, 0, 0, 0.2);
+}
+.cart-drawer.on {
+  transform: none;
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--line);
+}
+.drawer-header h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-close-drawer {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--card-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.btn-close-drawer:hover {
+  background: var(--line);
+  color: var(--text);
+}
+
+.drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+}
+
+/* Cart Item Row */
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--card-subtle);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+.cart-item-emoji {
+  font-size: 24px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--card);
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.cart-item-details {
+  flex: 1;
+  min-width: 0;
+}
+.cart-item-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cart-item-unit {
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+/* Cart Winner Card (The Big Feature) */
+.winner-card {
+  background: linear-gradient(135deg, rgba(59, 0, 98, 0.08), rgba(255, 50, 105, 0.08));
+  border: 1.5px solid var(--zepto-pink);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  margin: 18px 0 14px;
+}
+[data-theme="dark"] .winner-card {
+  background: linear-gradient(135deg, rgba(112, 40, 176, 0.2), rgba(255, 62, 115, 0.2));
+}
+.winner-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #ffffff;
+  background: var(--zepto-pink);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  margin-bottom: 8px;
+}
+.winner-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.winner-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+}
+.winner-total {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--green);
+}
+.winner-savings {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--green);
+  margin-top: 4px;
+}
+
+/* Other Platform Ranks */
+.platform-rank-item {
+  background: var(--card-subtle);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.platform-rank-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+.platform-rank-header b {
+  font-weight: 800;
+}
+.platform-rank-links {
+  display: none;
+  padding: 0 14px 10px;
+  font-size: 12px;
+}
+.platform-rank-item.open .platform-rank-links {
+  display: block;
+}
+.platform-rank-links a {
+  display: block;
+  color: var(--zepto-pink);
+  text-decoration: none;
+  padding: 3px 0;
+  font-weight: 600;
+}
+.platform-rank-links a:hover {
+  text-decoration: underline;
+}
+
+.drawer-footer {
+  padding: 16px 20px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 10px;
+}
+.drawer-footer button {
+  flex: 1;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  font-size: 13.5px;
+  font-weight: 700;
+  border: 1px solid var(--line);
+  background: var(--card-subtle);
+  transition: all 0.15s;
+}
+.drawer-footer button:hover {
+  background: var(--line);
+}
+.drawer-footer .btn-primary-action {
+  background: var(--zepto-pink);
+  color: #ffffff;
+  border-color: var(--zepto-pink);
+}
+.drawer-footer .btn-primary-action:hover {
+  background: var(--zepto-pink-hover);
+}
+
+/* Toast Message */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translate(-50%, 90px);
+  background: #1a1e29;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  font-size: 13.5px;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  z-index: 200;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+  opacity: 0;
+  pointer-events: none;
+}
+.toast.on {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  .delivery-meta { display: none; }
+  .search-box kbd { display: none; }
+  .top-bar { gap: 10px; padding: 10px 14px; }
+  .brand-logo { font-size: 22px; }
+  .brand-logo .suffix { font-size: 16px; }
+  .btn-nav span { display: none; }
+  .btn-nav { padding: 8px 10px; }
+  .hero-banner { flex-direction: column; align-items: flex-start; }
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .pcard { padding: 10px; }
+  .pcard-image-wrap { height: 140px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP HEADER -->
+<header>
+  <div class="top-bar">
+    <div class="brand" onclick="runSearch(''); $('q').value='';">
+      <div class="brand-logo">compar<span class="suffix">IT</span></div>
+    </div>
+
+    <div class="delivery-meta">
+      <div class="delivery-tag"><span class="bolt">⚡</span> 10 Mins Delivery</div>
+      <div class="delivery-location" title="Delivery comparison across 8 quick commerce stores">
+        <span>Compare 8 Stores</span>
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+
+    <div class="search-wrapper">
+      <div class="search-box">
+        <span class="search-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </span>
+        <input id="q" placeholder="Search for milk, atta, paneer, maggi, kurkure..." autocomplete="off">
+        <button class="btn-clear" id="x" title="Clear">✕</button>
+        <kbd>/</kbd>
+      </div>
+      <div class="suggestions-popup" id="sug"></div>
+    </div>
+
+    <div class="header-actions">
+      <div class="db-status-pill" id="dbBadge" style="display:none" title="Connected to MongoDB: comparit_db">
+        <span class="db-status-dot"></span>
+        <span>MongoDB</span>
+      </div>
+      <button class="btn-nav btn-theme" id="theme" title="Toggle Dark/Light Mode">🌙</button>
+      <button class="btn-nav" id="favf" title="Filter Favourites">♥ <span>Favourites</span></button>
+      <button class="btn-nav btn-cart" id="cartbtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-2z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        <span>Cart</span>
+        <span class="cart-badge" id="badge" style="display:none">0</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- HORIZONTAL CATEGORY SUB-NAV (Zepto tabs) -->
+  <div class="subnav-container">
+    <div class="subnav" id="cats"></div>
+  </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main>
+  <!-- HERO BANNER -->
+  <div class="hero-banner">
+    <div class="hero-content">
+      <div class="hero-icon">⚡</div>
+      <div class="hero-text">
+        <b>Live Quick-Commerce Price Comparison</b>
+        <span>Instantly comparing Zepto, Blinkit, Instamart, BigBasket, DMart, Amazon Fresh & more</span>
+      </div>
+    </div>
+    <div class="hero-stats" id="activeStoresBadge">8 Stores Active</div>
+  </div>
+
+  <!-- RECENT SEARCHES -->
+  <div class="recent-searches" id="recent"></div>
+
+  <!-- SHOP BY CATEGORY (Iconic Zepto Visual Grid) -->
+  <section class="category-section" id="categoryVisualSection">
+    <div class="section-header">
+      <h2 class="section-title">Shop by Category</h2>
+      <span class="section-link" onclick="setCategory('All')">See All ›</span>
+    </div>
+    <div class="category-grid" id="categoryVisualGrid"></div>
+  </section>
+
+  <!-- FILTER & SORT CONTROLS -->
+  <div class="filter-bar">
+    <div class="platform-chips">
+      <span class="filter-label">Stores:</span>
+      <span id="plats" style="display:flex; flex-wrap:wrap; gap:8px;"></span>
+    </div>
+    <div class="right-controls">
+      <div class="select-wrapper">
+        <select id="sort">
+          <option value="price">Cheapest First</option>
+          <option value="save">Biggest Savings</option>
+          <option value="az">A → Z</option>
+          <option value="za">Z → A</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- META STATS -->
+  <div class="meta-stats">
+    <span id="count">Loading catalog...</span>
+    <span style="font-size:12px; color:var(--text-muted)">*Prices include platform delivery fees for accurate basket comparison</span>
+  </div>
+
+  <!-- PRODUCT GRID -->
+  <div class="product-grid" id="grid"></div>
+</main>
+
+<!-- SHOPPING CART / LIST DRAWER (Zepto Style) -->
+<div class="drawer-backdrop" id="ov"></div>
+<aside class="cart-drawer" id="dr">
+  <div class="drawer-header">
+    <h3>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-2z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+      <span>My Comparison Cart</span>
+    </h3>
+    <button class="btn-close-drawer" id="close" title="Close drawer">✕</button>
+  </div>
+  <div class="drawer-body" id="db"></div>
+  <div class="drawer-footer">
+    <button id="copy">📋 Copy List</button>
+    <button id="clear">🗑 Clear</button>
+  </div>
+</aside>
+
+<!-- TOAST MESSAGE -->
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const store = {
+  get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d } catch { return d } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)) } catch {} }
+};
+
+let items = [], shown = [], platforms = [], cat = 'All', favOnly = false, query = '';
+let off = new Set(store.get('off', [])), favs = new Set(store.get('favs', [])),
+    cart = store.get('cart', {}), recent = store.get('recent', []);
+const brandedImageCache = store.get('brandedImageCacheV5', {}), imageLookups = new Map();
+let imageScanFrame = 0;
+const sel = {}, exp = new Set();
+let sugList = [], sugIdx = -1, t1, t2;
+
+/* Category display details with Zepto-style representative thumbnails */
+const categoryMeta = [
+  { name: 'Dairy', label: 'Dairy, Bread & Eggs', icon: '🥛', img: '/images/amul-gold-milk.jpg' },
+  { name: 'Vegetables', label: 'Fresh Vegetables', icon: '🥦', img: '/images/tomato.jpg' },
+  { name: 'Fruits', label: 'Fresh Fruits', icon: '🍎', img: '/images/apple-shimla.jpg' },
+  { name: 'Staples', label: 'Atta, Rice & Dals', icon: '🌾', img: '/images/aashirvaad-atta.jpg' },
+  { name: 'Snacks', label: 'Munchies & Chips', icon: '🍿', img: '/images/lays-classic-chips.jpg' },
+  { name: 'Beverages', label: 'Cold Drinks & Juices', icon: '🥤', img: '/images/coca-cola.jpg' },
+  { name: 'Bakery', label: 'Bakery & Breads', icon: '🍞', img: '/images/britannia-bread.jpg' },
+  { name: 'Household', label: 'Cleaning & Home', icon: '🧼', img: '/images/surf-excel-detergent.jpg' },
+  { name: 'Personal Care', label: 'Personal Care', icon: '🧴', img: '/images/dettol-original-soap.jpg' },
+  { name: 'Ice Cream', label: 'Ice Creams & More', icon: '🍦', img: '/images/baskin-robbins-scoop-tub.jpg' },
+  { name: 'Breakfast', label: 'Breakfast & Sauces', icon: '🥣', img: '/images/quaker-oats.jpg' },
+  { name: 'Dry Fruits', label: 'Masala & Dry Fruits', icon: '🥜', img: '/images/almonds.jpg' },
+  { name: 'Meat and Fish', label: 'Meats & Fish', icon: '🍗', img: '/images/rohu-fish.jpg' },
+  { name: 'Baby Care', label: 'Baby Care', icon: '👶', img: '/images/pampers-diapers.jpg' },
+  { name: 'Pet Care', label: 'Pet Supplies', icon: '🐾', img: '/images/pedigree-dog-food.jpg' },
+  { name: 'Packaged', label: 'Packaged Foods', icon: '🍜', img: '/images/maggi-noodles.jpg' }
+];
+
+const prices = p => p.prices.filter(x => !off.has(x.platform)).sort((a, b) => a.price + a.fee - b.price - b.fee);
+const total = x => x.price + x.fee;
+const unsplash = id => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=900&q=80`;
+
+function productImage(p) {
+  if (p.image) return p.image;
+  const name = p.name.toLowerCase(), category = p.category.toLowerCase();
+  let photo = 'photo-1547592180-85f173990554';
+  if (/\bmilk\b|\blassi\b|\byogurt\b|\bcurd\b|\bhorlicks\b|\bbournvita\b/.test(name) || category === 'baby care') photo = 'photo-1550583724-b2692b85b150';
+  else if (/bread|pav|bun|croissant|rusk/.test(name) || category === 'bakery') photo = 'photo-1509440159596-0249088772ff';
+  else if (category === 'vegetables' || category === 'fruits') photo = 'photo-1542838132-92c53300491e';
+  else if (/coffee|tea/.test(name)) photo = 'photo-1509042239860-f550ce710b93';
+  else if (category === 'household') photo = 'photo-1563453392212-326f5e854473';
+  else if (category === 'personal care') photo = 'photo-1608248543803-ba4f8c70ae0b';
+  else if (category === 'pet care') photo = 'photo-1583337130417-3346a1be7dee';
+  else if (category === 'meat and fish') photo = 'photo-1504674900247-0877df9cc836';
+  return unsplash(photo);
+}
+
+function observeBrandedImages() {
+  const viewportBottom = window.innerHeight + 300;
+  document.querySelectorAll('img[data-product-name]').forEach(img => {
+    const rect = img.getBoundingClientRect();
+    if (img.dataset.lookupStarted || rect.bottom < -300 || rect.top > viewportBottom) return;
+    img.dataset.lookupStarted = 'true';
+    const name = img.dataset.productName;
+    if (Object.hasOwn(brandedImageCache, name)) { applyBrandedImage(img, brandedImageCache[name]); return; }
+    if (!imageLookups.has(name)) {
+      const query = new URLSearchParams({ q: name, category: img.dataset.productCategory, unit: img.dataset.productUnit });
+      const lookup = fetch('/api/image?' + query).then(r => r.ok ? r.json() : null)
+        .then(result => {
+          const image = result?.image && /^https:\/\//.test(result.image) ? result.image : '';
+          brandedImageCache[name] = { image, source: result?.source || '' };
+          store.set('brandedImageCacheV5', brandedImageCache);
+          return brandedImageCache[name];
+        }).catch(() => ({ image: '', source: '' }));
+      imageLookups.set(name, lookup);
+    }
+    imageLookups.get(name).then(result => applyBrandedImage(img, result));
+  });
+}
+
+window.addEventListener('scroll', () => {
+  cancelAnimationFrame(imageScanFrame);
+  imageScanFrame = requestAnimationFrame(observeBrandedImages);
+}, { passive: true });
+
+function applyBrandedImage(img, result) {
+  if (!result?.image || !img.isConnected) return;
+  img.src = result.image;
+}
+
+const toast = m => {
+  const t = $('toast');
+  t.textContent = m;
+  t.classList.add('on');
+  clearTimeout(t._t);
+  t._t = setTimeout(() => t.classList.remove('on'), 2000);
+};
+
+/* ==================== MONGODB BACKEND SYNC ==================== */
+async function syncFromMongo() {
+  try {
+    const [statusRes, cartRes, favRes, recentRes] = await Promise.all([
+      fetch('/api/status').then(r => r.ok ? r.json() : null),
+      fetch('/api/cart').then(r => r.ok ? r.json() : null),
+      fetch('/api/favourites').then(r => r.ok ? r.json() : null),
+      fetch('/api/recent').then(r => r.ok ? r.json() : null)
+    ]);
+    if (statusRes?.mongoConnected) {
+      const badge = $('dbBadge');
+      if (badge) {
+        badge.style.display = 'inline-flex';
+        badge.title = `Connected to MongoDB (${statusRes.database} on ${statusRes.host})`;
+      }
+    }
+    if (favRes && Array.isArray(favRes)) {
+      favs = new Set(favRes);
+      store.set('favs', [...favs]);
+    }
+    if (recentRes && Array.isArray(recentRes) && recentRes.length) {
+      recent = recentRes;
+      store.set('recent', recent);
+    }
+    if (cartRes?.cart) {
+      for (const [name, qty] of Object.entries(cartRes.cart)) {
+        const p = items.find(it => it.name.toLowerCase() === name.toLowerCase());
+        if (p && qty > 0) cart[p.name] = { p, qty };
+      }
+      store.set('cart', cart);
+      renderCart();
+    }
+  } catch (e) {
+    console.warn('MongoDB sync notice:', e);
+  }
+}
+
+function syncCartToMongo(name, qty) {
+  fetch('/api/cart', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, qty })
+  }).catch(() => {});
+}
+
+function clearCartInMongo() {
+  fetch('/api/cart', { method: 'DELETE' }).catch(() => {});
+}
+
+function toggleFavInMongo(name) {
+  fetch('/api/favourites', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name })
+  }).catch(() => {});
+}
+
+/* ==================== DATA LOADING ==================== */
+async function load(q) {
+  query = q;
+  $('grid').innerHTML = '<div class="skeleton-card"></div>'.repeat(8);
+  items = await (await fetch('/api/search?q=' + encodeURIComponent(q))).json();
+  if (!platforms.length && items.length) {
+    platforms = items[0].prices.map(x => ({ name: x.platform, color: x.color }));
+    renderPlats();
+    renderTopSubnav();
+    renderVisualCategoryGrid();
+    await syncFromMongo();
+  }
+  render();
+}
+
+function renderTopSubnav() {
+  const cats = [...new Set(items.map(i => i.category))];
+  const list = ['All', ...cats];
+  $('cats').innerHTML = list.map(c => {
+    const meta = categoryMeta.find(m => m.name === c);
+    const icon = c === 'All' ? '🛍️' : (meta ? meta.icon : '📦');
+    return `<button class="subnav-item${c === cat ? ' on' : ''}" data-c="${c}"><span>${icon}</span> ${c}</button>`;
+  }).join('');
+}
+
+function renderVisualCategoryGrid() {
+  const container = $('categoryVisualGrid');
+  if (!container) return;
+  container.innerHTML = categoryMeta.map(m => `
+    <div class="cat-card${cat === m.name ? ' active' : ''}" data-cat="${m.name}">
+      <div class="cat-img-box">
+        <img src="${m.img}" alt="${m.label}" onerror="this.src='${unsplash('photo-1542838132-92c53300491e')}'">
+      </div>
+      <div class="cat-name">${m.label}</div>
+    </div>
+  `).join('');
+}
+
+function setCategory(c) {
+  cat = c;
+  document.querySelectorAll('.subnav-item').forEach(b => b.classList.toggle('on', b.dataset.c === c));
+  document.querySelectorAll('.cat-card').forEach(b => b.classList.toggle('active', b.dataset.cat === c));
+  render();
+}
+
+/* ==================== RENDER PRODUCTS ==================== */
+function render() {
+  shown = items.filter(p => (cat === 'All' || p.category === cat) && (!favOnly || favs.has(p.name)) && prices(p).length);
+  const s = $('sort').value;
+  const sv = p => { const r = prices(p); return total(r[r.length - 1]) - total(r[0]); };
+  shown.sort((a, b) => s === 'price' ? total(prices(a)[0]) - total(prices(b)[0])
+                     : s === 'save' ? sv(b) - sv(a)
+                     : s === 'az' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name));
+
+  $('count').textContent = `Showing ${shown.length} product${shown.length === 1 ? '' : 's'}` + (query ? ` for “${query}”` : '');
+  
+  if (!shown.length) {
+    $('grid').innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">🛒</div>
+        <h3>No products found</h3>
+        <p>Try searching for popular items like milk, bread, tomato or snacks.</p>
+      </div>`;
+  } else {
+    $('grid').innerHTML = shown.map(card).join('');
+  }
+
+  // Update hero active stores badge
+  const activeCount = platforms.length - off.size;
+  $('activeStoresBadge').textContent = `${activeCount} / ${platforms.length} Stores Active`;
+
+  renderRecent();
+  renderCart();
+  observeBrandedImages();
+}
+
+/* ==================== ZEPTO PRODUCT CARD ==================== */
+function card(p, i) {
+  const pr = prices(p), best = pr[0], max = total(pr[pr.length - 1]);
+  const s = pr.find(x => x.platform === sel[p.name]) || best;
+  const q = cart[p.name]?.qty || 0, image = productImage(p);
+  const save = max - total(best);
+
+  const isExpanded = exp.has(p.name);
+  const visibleRows = isExpanded ? pr : pr.slice(0, 2);
+
+  const platformRows = visibleRows.map(x => `
+    <div class="prow${x === s ? ' sel' : ''}" data-act="pick" data-i="${i}" data-pl="${x.platform}" title="Price ₹${x.price} + Delivery ₹${x.fee} = ₹${total(x)}">
+      <span class="prow-dot" style="background:${x.color}"></span>
+      <span class="prow-name">${x.platform}</span>
+      <span class="prow-bar"><i style="width:${Math.round(total(x) / max * 100)}%;background:${x.color}"></i></span>
+      <span class="prow-price">₹${x.price}</span>
+    </div>
+  `).join('');
+
+  return `
+    <div class="pcard" style="animation-delay:${Math.min(i, 8) * 35}ms">
+      <div class="pcard-image-wrap">
+        <img src="${image}" alt="${p.name}" ${p.image ? '' : `data-product-name="${p.name}" data-product-category="${p.category}" data-product-unit="${p.unit}"`} data-fallback="${image}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="if(this.dataset.fallback&&this.src!==this.dataset.fallback){this.src=this.dataset.fallback}">
+        
+        ${save > 0 ? `<span class="badge-save">Save ₹${Math.round(save)}</span>` : `<span class="badge-cheapest">Best Price</span>`}
+        
+        <button class="btn-heart${favs.has(p.name) ? ' on' : ''}" data-act="fav" data-i="${i}" title="Add to Favourites">♥</button>
+
+        ${q ? `
+          <div class="stepper-zepto">
+            <button data-act="dec" data-i="${i}">−</button>
+            <span>${q}</span>
+            <button data-act="inc" data-i="${i}">+</button>
+          </div>
+        ` : `
+          <button class="btn-add-zepto" data-act="inc" data-i="${i}">ADD</button>
+        `}
+      </div>
+
+      <div class="pcard-body">
+        <div class="pcard-price-row">
+          <span class="price-badge-green">₹${best.price}</span>
+          ${save > 0 ? `<span class="price-strike">₹${pr[pr.length - 1].price}</span>` : ''}
+          <span class="best-plat-pill">⚡ ${best.platform}</span>
+        </div>
+
+        <h3 class="pcard-title" title="${p.name}">${p.name}</h3>
+        <div class="pcard-unit">${p.unit} · ${p.category}</div>
+
+        <div class="compare-box">
+          <div class="compare-header">
+            <span>STORE COMPARISON</span>
+            <span>TOTAL</span>
+          </div>
+          ${platformRows}
+          ${pr.length > 2 ? `
+            <span class="btn-more-toggle" data-act="more" data-i="${i}">
+              ${isExpanded ? 'Show less ▲' : `Compare all ${pr.length} stores ▼`}
+            </span>
+          ` : ''}
+        </div>
+
+        <a class="btn-open-store" target="_blank" rel="noopener" href="${s.link}">
+          Open on ${s.platform} ↗
+        </a>
+      </div>
+    </div>
+  `;
+}
+
+function renderPlats() {
+  $('plats').innerHTML = platforms.map(p => `
+    <button class="chip${off.has(p.name) ? ' off' : ' on'}" data-p="${p.name}">
+      <span class="pdot" style="background:${p.color}"></span>${p.name}
+    </button>
+  `).join('');
+}
+
+function renderRecent() {
+  const container = $('recent');
+  if (!recent.length) { container.innerHTML = ''; return; }
+  container.innerHTML = '<span class="filter-label">Recent:</span>' +
+    recent.map(r => `<button class="chip" data-r="${r}">🕘 ${r}</button>`).join('');
+}
+
+/* ==================== CARD EVENTS ==================== */
+$('grid').addEventListener('click', e => {
+  const el = e.target.closest('[data-act]'); if (!el) return;
+  const p = shown[+el.dataset.i], a = el.dataset.act;
+  if (a === 'pick') sel[p.name] = el.dataset.pl;
+  if (a === 'more') exp.has(p.name) ? exp.delete(p.name) : exp.add(p.name);
+  if (a === 'fav') {
+    favs.has(p.name) ? favs.delete(p.name) : (favs.add(p.name), toast('Saved to favourites ♥'));
+    store.set('favs', [...favs]);
+    toggleFavInMongo(p.name);
+  }
+  if (a === 'inc') {
+    cart[p.name] = { p, qty: (cart[p.name]?.qty || 0) + 1 };
+    if (cart[p.name].qty === 1) toast(`Added ${p.name} to cart 🛍️`);
+  }
+  if (a === 'dec') {
+    if (--cart[p.name].qty <= 0) delete cart[p.name];
+  }
+  if (a === 'inc' || a === 'dec') {
+    store.set('cart', cart);
+    syncCartToMongo(p.name, cart[p.name]?.qty || 0);
+  }
+  render();
+});
+
+/* Visual Category Grid click listener */
+$('categoryVisualGrid').addEventListener('click', e => {
+  const card = e.target.closest('[data-cat]');
+  if (!card) return;
+  setCategory(card.dataset.cat);
+});
+
+/* Subnav Category click listener */
+$('cats').addEventListener('click', e => {
+  const b = e.target.closest('[data-c]');
+  if (!b) return;
+  setCategory(b.dataset.c);
+});
+
+/* Platform filters */
+$('plats').addEventListener('click', e => {
+  const b = e.target.closest('[data-p]'); if (!b) return;
+  const n = b.dataset.p;
+  if (!off.has(n) && off.size >= platforms.length - 1) return toast('Keep at least one store active');
+  off.has(n) ? off.delete(n) : off.add(n);
+  store.set('off', [...off]);
+  renderPlats();
+  render();
+});
+
+$('recent').addEventListener('click', e => {
+  const r = e.target.dataset.r;
+  if (r) runSearch(r);
+});
+
+$('sort').onchange = render;
+$('favf').onclick = () => {
+  favOnly = !favOnly;
+  $('favf').classList.toggle('on', favOnly);
+  render();
+};
+
+/* ==================== SEARCH & AUTOCOMPLETE ==================== */
+function runSearch(text) {
+  $('q').value = text;
+  $('x').style.display = text ? 'block' : 'none';
+  hideSug();
+  text = text.trim();
+  if (text) {
+    recent = [text, ...recent.filter(r => r !== text)].slice(0, 5);
+    store.set('recent', recent);
+  }
+  load(text);
+}
+
+function hideSug() { $('sug').style.display = 'none'; sugIdx = -1; }
+
+function showSug(list, q) {
+  sugList = list; sugIdx = -1;
+  if (!list.length) return hideSug();
+  const re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'i');
+  $('sug').innerHTML = list.map((n, i) => `
+    <div data-i="${i}">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <span>${n.replace(re, '<mark>$1</mark>')}</span>
+    </div>
+  `).join('');
+  $('sug').style.display = 'block';
+}
+
+$('q').addEventListener('input', () => {
+  const v = $('q').value;
+  $('x').style.display = v ? 'block' : 'none';
+  clearTimeout(t1); clearTimeout(t2);
+  t1 = setTimeout(async () => showSug(v.trim() ? await (await fetch('/api/suggest?q=' + encodeURIComponent(v))).json() : [], v.trim()), 120);
+  t2 = setTimeout(() => { query = v.trim(); load(v.trim()); }, 350);
+});
+
+$('q').addEventListener('keydown', e => {
+  const rows = $('sug').children;
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    e.preventDefault(); if (!rows.length) return;
+    sugIdx = (sugIdx + (e.key === 'ArrowDown' ? 1 : -1) + rows.length) % rows.length;
+    [...rows].forEach((r, i) => r.classList.toggle('on', i === sugIdx));
+  } else if (e.key === 'Enter') {
+    clearTimeout(t2);
+    runSearch(sugIdx >= 0 ? sugList[sugIdx] : $('q').value);
+  } else if (e.key === 'Escape') {
+    hideSug();
+  }
+});
+
+$('sug').addEventListener('mousedown', e => {
+  const r = e.target.closest('[data-i]');
+  if (r) runSearch(sugList[+r.dataset.i]);
+});
+$('q').addEventListener('blur', () => setTimeout(hideSug, 160));
+$('x').onclick = () => { runSearch(''); $('q').focus(); };
+document.addEventListener('keydown', e => {
+  if (e.key === '/' && document.activeElement !== $('q')) {
+    e.preventDefault();
+    $('q').focus();
+  }
+});
+
+/* ==================== ZEPTO CART / BASKET DRAWER ==================== */
+function renderCart() {
+  const list = Object.values(cart);
+  const n = list.reduce((s, c) => s + c.qty, 0);
+  $('badge').style.display = n ? 'inline-block' : 'none';
+  $('badge').textContent = n;
+
+  if (!list.length) {
+    $('db').innerHTML = `
+      <div class="empty-state" style="padding:50px 10px;">
+        <div class="empty-state-icon">🛍️</div>
+        <h3>Your cart is empty</h3>
+        <p>Tap "ADD" on any grocery item to start comparing prices across all stores.</p>
+      </div>`;
+    return;
+  }
+
+  const names = platforms.map(p => p.name).filter(x => !off.has(x));
+  const rank = names.map(pl => {
+    let sum = 0, fee = 0;
+    const links = [];
+    list.forEach(c => {
+      const x = c.p.prices.find(y => y.platform === pl);
+      sum += x.price * c.qty;
+      fee = x.fee;
+      links.push([c.p.name, x.link]);
+    });
+    return {
+      pl, sum, fee, tot: sum + fee, links,
+      color: platforms.find(p => p.name === pl).color
+    };
+  }).sort((a, b) => a.tot - b.tot);
+
+  const bestPlatform = rank[0];
+  const maxDifference = rank[rank.length - 1].tot - bestPlatform.tot;
+
+  $('db').innerHTML = `
+    <!-- Basket Item List -->
+    <div style="margin-bottom:18px;">
+      <div style="font-size:12px; font-weight:700; color:var(--text-muted); margin-bottom:8px; text-transform:uppercase;">
+        Items in Cart (${n})
+      </div>
+      ${list.map(c => `
+        <div class="cart-item">
+          <div class="cart-item-emoji">${c.p.emoji}</div>
+          <div class="cart-item-details">
+            <div class="cart-item-title">${c.p.name}</div>
+            <div class="cart-item-unit">${c.p.unit}</div>
+          </div>
+          <div class="stepper-zepto" style="position:static; box-shadow:none;">
+            <button data-ci="${c.p.name}" data-d="-1">−</button>
+            <span>${c.qty}</span>
+            <button data-ci="${c.p.name}" data-d="1">+</button>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+
+    <!-- Celebration Winner Card -->
+    <div class="winner-card">
+      <div class="winner-badge-pill">🏆 CHEAPEST WHOLE BASKET</div>
+      <div class="winner-main">
+        <div>
+          <div class="winner-name">${bestPlatform.pl}</div>
+          ${maxDifference > 0 ? `<div class="winner-savings">Save ₹${maxDifference} compared to highest store</div>` : ''}
+        </div>
+        <div class="winner-total">₹${bestPlatform.tot}</div>
+      </div>
+      <div style="font-size:11.5px; color:var(--text-muted); margin-top:6px;">
+        Items ₹${bestPlatform.sum} + Delivery fee ₹${bestPlatform.fee}
+      </div>
+    </div>
+
+    <!-- Store Comparison Breakdown -->
+    <div style="margin-top:20px;">
+      <div style="font-size:12px; font-weight:700; color:var(--text-muted); margin-bottom:8px; text-transform:uppercase;">
+        All Store Totals
+      </div>
+      ${rank.map((r, i) => `
+        <div class="platform-rank-item${i === 0 ? ' open' : ''}">
+          <div class="platform-rank-header">
+            <span style="display:flex; align-items:center; gap:8px;">
+              <span class="pdot" style="background:${r.color}"></span>
+              <b>${r.pl}</b>
+              ${i === 0 ? '<span style="font-size:11px; background:var(--green-soft); color:var(--green); padding:1px 6px; border-radius:4px; font-weight:800;">CHEAPEST</span>' : ''}
+            </span>
+            <b style="font-size:14px;">₹${r.tot}</b>
+          </div>
+          <div class="platform-rank-links">
+            <div style="color:var(--text-muted); margin-bottom:4px;">Items ₹${r.sum} · Delivery ₹${r.fee}</div>
+            ${r.links.map(l => `<a target="_blank" rel="noopener" href="${l[1]}">↗ Open ${l[0]} on ${r.pl}</a>`).join('')}
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+$('db').addEventListener('click', e => {
+  const b = e.target.closest('[data-ci]');
+  if (b) {
+    const c = cart[b.dataset.ci];
+    c.qty += +b.dataset.d;
+    const currentQty = c.qty;
+    if (c.qty <= 0) delete cart[b.dataset.ci];
+    store.set('cart', cart);
+    syncCartToMongo(b.dataset.ci, currentQty <= 0 ? 0 : currentQty);
+    render();
+    return;
+  }
+  const rankHeader = e.target.closest('.platform-rank-header');
+  if (rankHeader) {
+    rankHeader.parentElement.classList.toggle('open');
+  }
+});
+
+const drawer = on => {
+  $('dr').classList.toggle('on', on);
+  $('ov').classList.toggle('on', on);
+};
+$('cartbtn').onclick = () => drawer(true);
+$('close').onclick = $('ov').onclick = () => drawer(false);
+
+$('clear').onclick = () => {
+  cart = {};
+  store.set('cart', cart);
+  clearCartInMongo();
+  render();
+  toast('Cart cleared');
+};
+
+$('copy').onclick = async () => {
+  const txt = Object.values(cart).map(c => `• ${c.p.name} (${c.p.unit}) x${c.qty}`).join('\n');
+  try {
+    await navigator.clipboard.writeText('Shopping List from comparIT:\n' + txt);
+    toast('List copied to clipboard 📋');
+  } catch {
+    toast('Copy not allowed in browser');
+  }
+};
+
+/* ==================== THEME CONTROLLER ==================== */
+function theme(t) {
+  document.documentElement.dataset.theme = t;
+  $('theme').textContent = t === 'dark' ? '☀️' : '🌙';
+  store.set('theme', t);
+}
+$('theme').onclick = () => theme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+theme(store.get('theme', matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light'));
+
+/* Init */
+load('');
+</script>
+</body>
+</html>
