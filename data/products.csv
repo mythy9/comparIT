@@ -1,0 +1,232 @@
+# name,category,emoji,unit,basePrice(INR),imageUrl
+Amul Taaza Milk,Dairy,🥛,500 ml,29,/images/amul-taaza-milk.jpg
+Amul Gold Milk,Dairy,🥛,1 L,68,/images/amul-gold-milk.jpg
+Amul Butter,Dairy,🧈,100 g,58,/images/amul-butter.jpg
+Amul Cheese Slices,Dairy,🧀,200 g,130,/images/amul-cheese-slices.jpg
+Amul Paneer,Dairy,🧀,200 g,95,/images/amul-paneer.jpg
+Mother Dairy Curd,Dairy,🥣,400 g,40,/images/mother-dairy-curd.jpg
+Epigamia Greek Yogurt,Dairy,🥣,90 g,45,/images/epigamia-greek-yogurt.jpg
+Farm Eggs,Dairy,🥚,6 pcs,48,/images/farm-eggs.jpg
+Britannia Bread,Bakery,🍞,400 g,45,/images/britannia-bread.jpg
+Whole Wheat Bread,Bakery,🍞,400 g,50,/images/whole-wheat-bread.jpg
+Pav Buns,Bakery,🥖,6 pcs,30,/images/pav-buns.jpg
+Aashirvaad Atta,Staples,🌾,5 kg,270,/images/aashirvaad-atta.jpg
+Fortune Sunflower Oil,Staples,🛢️,1 L,135,/images/fortune-sunflower-oil.jpg
+Saffola Gold Oil,Staples,🛢️,1 L,175,/images/saffola-gold-oil.jpg
+India Gate Basmati Rice,Staples,🍚,1 kg,130,/images/india-gate-basmati-rice.jpg
+Sona Masoori Rice,Staples,🍚,5 kg,330,/images/sona-masoori-rice.jpg
+Toor Dal,Staples,🫘,1 kg,165,/images/toor-dal.jpg
+Moong Dal,Staples,🫘,1 kg,130,/images/moong-dal.jpg
+Chana Dal,Staples,🫘,1 kg,95,/images/chana-dal.jpg
+Rajma,Staples,🫘,500 g,85,/images/rajma.jpg
+Tata Salt,Staples,🧂,1 kg,28,/images/tata-salt.jpg
+Sugar,Staples,🍬,1 kg,48,/images/sugar.jpg
+Besan,Staples,🌾,500 g,60,/images/besan.jpg
+Poha,Staples,🍚,500 g,45,/images/poha.jpg
+Sooji Rava,Staples,🌾,500 g,38,/images/sooji-rava.jpg
+Tata Tea Gold,Beverages,🍵,250 g,155,/images/tata-tea-gold.jpg
+Red Label Tea,Beverages,🍵,250 g,130,/images/red-label-tea.jpg
+Nescafe Classic Coffee,Beverages,☕,50 g,165,/images/nescafe-classic-coffee.jpg
+Bru Instant Coffee,Beverages,☕,100 g,285,/images/bru-instant-coffee.jpg
+Coca-Cola,Beverages,🥤,750 ml,40,/images/coca-cola.jpg
+Pepsi,Beverages,🥤,750 ml,40,/images/pepsi.jpg
+Real Fruit Juice,Beverages,🧃,1 L,120,/images/real-fruit-juice.jpg
+Bisleri Water,Beverages,💧,1 L,20,/images/bisleri-water.jpg
+Red Bull,Beverages,🥫,250 ml,125,/images/red-bull.jpg
+Onion,Vegetables,🧅,1 kg,40,/images/onion.jpg
+Potato,Vegetables,🥔,1 kg,35,/images/potato.jpg
+Tomato,Vegetables,🍅,1 kg,45,/images/tomato.jpg
+Carrot,Vegetables,🥕,500 g,35,/images/carrot.jpg
+Capsicum,Vegetables,🫑,250 g,30,/images/capsicum.jpg
+Cauliflower,Vegetables,🥦,1 pc,40,/images/cauliflower.jpg
+Spinach,Vegetables,🥬,250 g,20,/images/spinach.jpg
+Coriander Leaves,Vegetables,🌿,100 g,15,/images/coriander-leaves.jpg
+Ginger,Vegetables,🫚,100 g,15,/images/ginger.jpg
+Garlic,Vegetables,🧄,250 g,50,/images/garlic.jpg
+Green Chilli,Vegetables,🌶️,100 g,12,/images/green-chilli.jpg
+Banana,Fruits,🍌,1 dozen,60,/images/banana.jpg
+Apple Shimla,Fruits,🍎,1 kg,170,/images/apple-shimla.jpg
+Orange,Fruits,🍊,1 kg,110,/images/orange.jpg
+Mango Alphonso,Fruits,🥭,1 kg,320,/images/mango-alphonso.jpg
+Grapes,Fruits,🍇,500 g,80,/images/grapes.jpg
+Pomegranate,Fruits,🍎,500 g,110,/images/pomegranate.jpg
+Watermelon,Fruits,🍉,1 pc,70,/images/watermelon.jpg
+Lays Classic Chips,Snacks,🥔,52 g,20,/images/lays-classic-chips.jpg
+Kurkure Masala Munch,Snacks,🌽,90 g,20,/images/kurkure-masala-munch.jpg
+Haldiram Aloo Bhujia,Snacks,🥨,200 g,55,/images/haldiram-aloo-bhujia.jpg
+Parle-G Biscuits,Snacks,🍪,800 g,80,/images/parle-g-biscuits.jpg
+Oreo Biscuits,Snacks,🍪,120 g,40,/images/oreo-biscuits.jpg
+Dairy Milk Chocolate,Snacks,🍫,50 g,50,/images/dairy-milk-chocolate.jpg
+Maggi Noodles,Snacks,🍜,280 g,56,/images/maggi-noodles.jpg
+Yippee Noodles,Snacks,🍜,240 g,50,/images/yippee-noodles.jpg
+Kelloggs Corn Flakes,Snacks,🥣,475 g,215,/images/kelloggs-corn-flakes.jpg
+Quaker Oats,Snacks,🥣,1 kg,190,/images/quaker-oats.jpg
+Kissan Mixed Fruit Jam,Packaged,🍓,500 g,170,/images/kissan-mixed-fruit-jam.jpg
+Maggi Ketchup,Packaged,🍅,950 g,150,/images/maggi-ketchup.jpg
+Peanut Butter,Packaged,🥜,340 g,185,/images/peanut-butter.jpg
+Everest Turmeric Powder,Spices,🟡,100 g,32,/images/everest-turmeric-powder.jpg
+Everest Red Chilli Powder,Spices,🌶️,100 g,50,/images/everest-red-chilli-powder.jpg
+MDH Garam Masala,Spices,🫙,100 g,85,/images/mdh-garam-masala.jpg
+Jeera Cumin Seeds,Spices,🫙,100 g,60,/images/jeera-cumin-seeds.jpg
+Almonds,Dry Fruits,🌰,250 g,250,/images/almonds.jpg
+Cashews,Dry Fruits,🥜,250 g,260,/images/cashews.jpg
+Raisins,Dry Fruits,🍇,250 g,110,/images/raisins.jpg
+Surf Excel Detergent,Household,🧺,1 kg,130,/images/surf-excel-detergent.jpg
+Vim Dishwash Gel,Household,🧴,500 ml,110,/images/vim-dishwash-gel.jpg
+Lizol Floor Cleaner,Household,🧼,975 ml,205,/images/lizol-floor-cleaner.jpg
+Colgate Toothpaste,Personal Care,🪥,200 g,115,/images/colgate-toothpaste.jpg
+Dove Soap,Personal Care,🧼,3 x 100 g,150,/images/dove-soap.jpg
+Head and Shoulders Shampoo,Personal Care,🧴,340 ml,330,/images/head-and-shoulders-shampoo.jpg
+Whisper Sanitary Pads,Personal Care,🧻,15 pcs,110,/images/whisper-sanitary-pads.jpg
+Chicken Curry Cut,Meat and Fish,🍗,500 g,150,/images/chicken-curry-cut.jpg
+Rohu Fish,Meat and Fish,🐟,500 g,190,/images/rohu-fish.jpg
+Pedigree Dog Food,Pet Care,🐕,1.2 kg,350,/images/pedigree-dog-food.jpg
+Amul Lassi,Dairy,🥛,200 ml,25,/images/amul-lassi.jpg
+Amul Cheese Block,Dairy,🧀,400 g,250,/images/amul-cheese-block.jpg
+Amul Ghee,Dairy,🧈,500 ml,320,/images/amul-ghee.jpg
+Mother Dairy Ice Cream Tub,Ice Cream,🍨,500 ml,180,/images/mother-dairy-ice-cream-tub.jpg
+Kwality Walls Cornetto,Ice Cream,🍦,1 pc,50,/images/kwality-walls-cornetto.jpg
+Vadilal Kulfi,Ice Cream,🍦,1 pc,40,/images/vadilal-kulfi.jpg
+Baskin Robbins Scoop Tub,Ice Cream,🍨,500 ml,350,/images/baskin-robbins-scoop-tub.jpg
+Brown Bread,Bakery,🍞,400 g,55,/images/brown-bread.jpg
+Multigrain Bread,Bakery,🍞,400 g,60,/images/multigrain-bread.jpg
+Croissant,Bakery,🥐,2 pcs,70,/images/croissant.jpg
+Cake Rusk,Bakery,🍪,300 g,60,/images/cake-rusk.jpg
+Rice Bran Oil,Staples,🛢️,1 L,150,/images/rice-bran-oil.jpg
+Mustard Oil,Staples,🛢️,1 L,170,/images/mustard-oil.jpg
+Olive Oil,Staples,🫒,500 ml,550,/images/olive-oil.jpg
+Jaggery,Staples,🍯,500 g,45,/images/jaggery.jpg
+Honey,Staples,🍯,250 g,150,/images/honey.jpg
+Urad Dal,Staples,🫘,1 kg,150,/images/urad-dal.jpg
+Masoor Dal,Staples,🫘,1 kg,95,/images/masoor-dal.jpg
+Kabuli Chana,Staples,🫘,1 kg,130,/images/kabuli-chana.jpg
+Maida,Staples,🌾,1 kg,45,/images/maida.jpg
+Ragi Flour,Staples,🌾,500 g,50,/images/ragi-flour.jpg
+Vermicelli,Staples,🍝,400 g,40,/images/vermicelli.jpg
+Idli Rice,Staples,🍚,1 kg,60,/images/idli-rice.jpg
+Brown Rice,Staples,🍚,1 kg,110,/images/brown-rice.jpg
+Tamarind,Staples,🫙,200 g,40,/images/tamarind.jpg
+Coconut Oil,Staples,🥥,500 ml,230,/images/coconut-oil.jpg
+Lipton Green Tea,Beverages,🍵,25 bags,175,/images/lipton-green-tea.jpg
+Horlicks,Beverages,🥛,500 g,280,/images/horlicks.jpg
+Bournvita,Beverages,🥛,500 g,260,/images/bournvita.jpg
+Thums Up,Beverages,🥤,750 ml,40,/images/thums-up.jpg
+Sprite,Beverages,🥤,750 ml,40,/images/sprite.jpg
+Frooti,Beverages,🧃,600 ml,40,/images/frooti.jpg
+Tropicana Orange Juice,Beverages,🧃,1 L,130,/images/tropicana-orange-juice.jpg
+Coconut Water,Beverages,🥥,200 ml,45,/images/coconut-water.jpg
+Monster Energy,Beverages,🥫,350 ml,125,/images/monster-energy.jpg
+Soda Water,Beverages,💧,750 ml,20,/images/soda-water.jpg
+Cold Coffee Can,Beverages,☕,200 ml,60,/images/cold-coffee-can.jpg
+Cucumber,Vegetables,🥒,500 g,25,/images/cucumber.jpg
+Brinjal,Vegetables,🍆,500 g,30,/images/brinjal.jpg
+Lady Finger Okra,Vegetables,🥬,500 g,40,/images/lady-finger-okra.jpg
+Cabbage,Vegetables,🥬,1 pc,30,/images/cabbage.jpg
+Beetroot,Vegetables,🥕,500 g,30,/images/beetroot.jpg
+Sweet Corn,Vegetables,🌽,2 pcs,35,/images/sweet-corn.jpg
+Mushroom,Vegetables,🍄,200 g,45,/images/mushroom.jpg
+Lemon,Vegetables,🍋,250 g,30,/images/lemon.jpg
+Pumpkin,Vegetables,🎃,500 g,25,/images/pumpkin.jpg
+Bottle Gourd,Vegetables,🥒,1 pc,30,/images/bottle-gourd.jpg
+Peas Green,Vegetables,🫛,500 g,50,/images/peas-green.jpg
+Broccoli,Vegetables,🥦,1 pc,55,/images/broccoli.jpg
+Sweet Potato,Vegetables,🍠,500 g,40,/images/sweet-potato.jpg
+Mint Leaves,Vegetables,🌿,100 g,15,/images/mint-leaves.jpg
+Papaya,Fruits,🍈,1 pc,60,/images/papaya.jpg
+Pineapple,Fruits,🍍,1 pc,70,/images/pineapple.jpg
+Kiwi,Fruits,🥝,3 pcs,90,/images/kiwi.jpg
+Strawberry,Fruits,🍓,200 g,90,/images/strawberry.jpg
+Guava,Fruits,🍐,500 g,50,/images/guava.jpg
+Pear,Fruits,🍐,500 g,90,/images/pear.jpg
+Muskmelon,Fruits,🍈,1 pc,60,/images/muskmelon.jpg
+Coconut,Fruits,🥥,1 pc,35,/images/coconut.jpg
+Dragon Fruit,Fruits,🐉,1 pc,120,/images/dragon-fruit.jpg
+Blueberries,Fruits,🫐,125 g,200,/images/blueberries.jpg
+Pringles Original,Snacks,🥔,107 g,110,/images/pringles-original.jpg
+Bingo Mad Angles,Snacks,🔺,72 g,20,/images/bingo-mad-angles.jpg
+Doritos Nacho,Snacks,🔺,60 g,30,/images/doritos-nacho.jpg
+Act II Popcorn,Snacks,🍿,3 pcs,30,/images/act-ii-popcorn.jpg
+Good Day Cashew Cookies,Snacks,🍪,200 g,40,/images/good-day-cashew-cookies.jpg
+Hide and Seek Biscuits,Snacks,🍪,200 g,40,/images/hide-and-seek-biscuits.jpg
+Bourbon Biscuits,Snacks,🍪,150 g,35,/images/bourbon-biscuits.jpg
+Kitkat,Snacks,🍫,4 fingers,40,/images/kitkat.jpg
+Snickers,Snacks,🍫,45 g,50,/images/snickers.jpg
+Ferrero Rocher,Snacks,🍫,16 pcs,650,/images/ferrero-rocher.jpg
+Cadbury Gems,Snacks,🍬,45 g,40,/images/cadbury-gems.jpg
+Haldiram Namkeen Mix,Snacks,🥨,400 g,110,/images/haldiram-namkeen-mix.jpg
+Bikaji Bhujia,Snacks,🥨,400 g,110,/images/bikaji-bhujia.jpg
+Chikki,Snacks,🥜,100 g,30,/images/chikki.jpg
+Makhana,Snacks,🌰,100 g,120,/images/makhana.jpg
+Muesli,Breakfast,🥣,500 g,280,/images/muesli.jpg
+Chocos,Breakfast,🥣,375 g,190,/images/chocos.jpg
+Instant Oats Masala,Breakfast,🥣,200 g,60,/images/instant-oats-masala.jpg
+Pasta Penne,Packaged,🍝,500 g,95,/images/pasta-penne.jpg
+Instant Soup,Packaged,🍲,50 g,50,/images/instant-soup.jpg
+Soya Sauce,Sauces,🫙,200 ml,60,/images/soya-sauce.jpg
+Schezwan Chutney,Sauces,🌶️,250 g,95,/images/schezwan-chutney.jpg
+Mayonnaise,Sauces,🫙,250 g,95,/images/mayonnaise.jpg
+Tomato Puree,Sauces,🍅,200 g,45,/images/tomato-puree.jpg
+Mixed Pickle,Sauces,🥒,400 g,120,/images/mixed-pickle.jpg
+Mango Pickle,Sauces,🥭,400 g,130,/images/mango-pickle.jpg
+Chocolate Spread,Sauces,🍫,350 g,230,/images/chocolate-spread.jpg
+Frozen Green Peas,Frozen,🫛,500 g,95,/images/frozen-green-peas.jpg
+Frozen French Fries,Frozen,🍟,420 g,140,/images/frozen-french-fries.jpg
+Frozen Paratha,Frozen,🫓,5 pcs,90,/images/frozen-paratha.jpg
+Chicken Nuggets,Frozen,🍗,250 g,200,/images/chicken-nuggets.jpg
+Momos Veg,Frozen,🥟,10 pcs,130,/images/momos-veg.jpg
+Ready to Eat Dal Makhani,Ready to Eat,🍛,300 g,110,/images/ready-to-eat-dal-makhani.jpg
+Cumin Powder,Spices,🫙,100 g,60,/images/cumin-powder.jpg
+Coriander Powder,Spices,🫙,100 g,35,/images/coriander-powder.jpg
+Black Pepper,Spices,⚫,50 g,60,/images/black-pepper.jpg
+Cardamom,Spices,🫙,50 g,160,/images/cardamom.jpg
+Cinnamon,Spices,🫙,50 g,55,/images/cinnamon.jpg
+Cloves,Spices,🫙,50 g,70,/images/cloves.jpg
+Mustard Seeds,Spices,🫙,100 g,25,/images/mustard-seeds.jpg
+Chaat Masala,Spices,🫙,100 g,70,/images/chaat-masala.jpg
+Pav Bhaji Masala,Spices,🫙,100 g,75,/images/pav-bhaji-masala.jpg
+Walnuts,Dry Fruits,🌰,250 g,350,/images/walnuts.jpg
+Pistachios,Dry Fruits,🥜,200 g,340,/images/pistachios.jpg
+Dates,Dry Fruits,🌴,500 g,170,/images/dates.jpg
+Dried Figs,Dry Fruits,🫙,250 g,300,/images/dried-figs.jpg
+Chia Seeds,Dry Fruits,🫙,200 g,150,/images/chia-seeds.jpg
+Ariel Detergent Liquid,Household,🧺,1 L,300,/images/ariel-detergent-liquid.jpg
+Comfort Fabric Conditioner,Household,🧴,860 ml,220,/images/comfort-fabric-conditioner.jpg
+Harpic Toilet Cleaner,Household,🚽,500 ml,95,/images/harpic-toilet-cleaner.jpg
+Colin Glass Cleaner,Household,🧼,500 ml,100,/images/colin-glass-cleaner.jpg
+Scotch Brite Scrub Pad,Household,🧽,3 pcs,50,/images/scotch-brite-scrub-pad.jpg
+Garbage Bags,Household,🗑️,30 pcs,90,/images/garbage-bags.jpg
+Good Knight Refill,Household,🦟,45 ml,75,/images/good-knight-refill.jpg
+Aluminium Foil,Household,📦,9 m,70,/images/aluminium-foil.jpg
+Tissue Paper Roll,Household,🧻,2 pcs,60,/images/tissue-paper-roll.jpg
+Candles,Household,🕯️,10 pcs,30,/images/candles.jpg
+Agarbatti,Household,🪔,1 pack,50,/images/agarbatti.jpg
+Pepsodent Toothbrush,Personal Care,🪥,2 pcs,70,/images/pepsodent-toothbrush.jpg
+Lux Soap,Personal Care,🧼,4 x 100 g,150,/images/lux-soap.jpg
+Dettol Handwash,Personal Care,🧴,200 ml,95,/images/dettol-handwash.jpg
+Sunsilk Shampoo,Personal Care,🧴,340 ml,260,/images/sunsilk-shampoo.jpg
+Nivea Body Lotion,Personal Care,🧴,400 ml,350,/images/nivea-body-lotion.jpg
+Parachute Coconut Hair Oil,Personal Care,🥥,300 ml,150,/images/parachute-coconut-hair-oil.jpg
+Gillette Razor,Personal Care,🪒,1 pc,60,/images/gillette-razor.jpg
+Dettol Sanitizer,Personal Care,🧴,200 ml,90,/images/dettol-sanitizer.jpg
+Fair and Lovely Face Cream,Personal Care,🧴,50 g,110,/images/fair-and-lovely-face-cream.jpg
+Lakme Kajal,Personal Care,💄,1 pc,160,/images/lakme-kajal.jpg
+Pampers Diapers,Baby Care,👶,L 54 pcs,950,/images/pampers-diapers.jpg
+Cerelac Wheat,Baby Care,🍼,300 g,260,/images/cerelac-wheat.jpg
+Johnsons Baby Powder,Baby Care,👶,200 g,150,/images/johnsons-baby-powder.jpg
+Baby Wipes,Baby Care,👶,72 pcs,180,/images/baby-wipes.jpg
+Cheetos,Snacks,🧀,60 g,20,/images/cheetos.jpg
+Whey Protein,Health,💪,1 kg,2200,/images/whey-protein.jpg
+Dabur Chyawanprash,Health,🍯,500 g,260,/images/dabur-chyawanprash.jpg
+Vitamin C Tablets,Health,💊,15 pcs,25,/images/vitamin-c-tablets.jpg
+ORS Electrolyte,Health,💧,21 g,22,/images/ors-electrolyte.jpg
+Paracetamol Strip,Health,💊,10 tabs,20,/images/paracetamol-strip.jpg
+Fish Pomfret,Meat and Fish,🐟,500 g,450,/images/fish-pomfret.jpg
+Prawns,Meat and Fish,🦐,250 g,300,/images/prawns.jpg
+Mutton Curry Cut,Meat and Fish,🍖,500 g,450,/images/mutton-curry-cut.jpg
+Chicken Breast,Meat and Fish,🍗,500 g,200,/images/chicken-breast.jpg
+Egg Brown,Dairy,🥚,12 pcs,110,/images/egg-brown.jpg
+Cat Food Whiskas,Pet Care,🐈,1.2 kg,420,/images/cat-food-whiskas.jpg
+Notebook,Stationery,📓,172 pages,60,/images/notebook.jpg
+Ball Pens,Stationery,🖊️,10 pcs,50,/images/ball-pens.jpg
+Batteries AA,Stationery,🔋,4 pcs,90,/images/batteries-aa.jpg
+LED Bulb,Stationery,💡,9 W,80,/images/led-bulb.jpg
